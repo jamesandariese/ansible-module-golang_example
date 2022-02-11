@@ -1,14 +1,21 @@
 # Ansible Collection - `jamesandariese.golang_example`
 
-This collection is an example of how to create a golang module
-for ansible.  Use it as a skeleton or to generate primes if you
-need them in ansible for some reason :D
+This collection is an example of how to create a golang module for ansible.
+Use it as a skeleton or to generate primes if you need them in ansible for some
+reason :D
+
+The main purpose of this is to enable the use of golang for the development of
+ansible modules targeting multiple architectures, a current pain point with
+ansible's binary modules.  For example, this may be used to target Linux on
+ARM and amd64.  In my own case, I am targeting macOS and Linux.  This may also
+be used to target Windows or any other obscure GOOS/GOARCH combination.
 
 Enjoy!
 
 ## Customizing
 
-To create your own prime seive module, you may update this module entirely with search and replace.  It is name independent as is to make it easy to modify.
+To create your own prime seive module, you may update this module entirely with
+search and replace.  It is name independent as is to make it easy to modify.
 
 ### Search and replace keywords
 The keywords to change are as follows:
@@ -34,3 +41,24 @@ Making this into your own module requires some steps:
   2) in `build_ignore` change `generate_prime_*` to `stuff_things_*` (note the underscore -- this is to keep the binary module from accidentally going to ansible-galaxy -- it will be too large!)
 4) modify `test/test-playbook.yml` with the new module and collection names
 5) modify this README.md
+
+### Adding architectures and operating systems
+
+If you need a new GOOS/GOARCH combination, you may need to edit
+`plugins/action/generate_prime.py` or whatever you renamed it to.
+
+If the GOOS setting required is simply the output of uname on the host but
+lowercase, the defaults will suffice.  If it's different, such as for `solaris`
+which shows `SunOS`, modify it as follows:
+
+```python3
+_GOARCH_CONVERSIONS = {
+    "x86_64": "amd64",
+}
+_GOOS_CONVERSIONS = {
+    "sunos": "solaris",
+}
+```
+
+Note the lowercase `sunos` in the map despite the uppercase `SunOS` in `uname`.
+These maps are 100% lowercase for consistency.
