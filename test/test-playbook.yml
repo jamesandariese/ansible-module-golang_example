@@ -1,0 +1,11 @@
+---
+- hosts: all
+  gather_facts: yes
+  become: no
+  tasks:
+    - strudelline.golang_example.generate_prime:
+        bits: 10
+        _rebuild_golang_module: yes
+      register: prime
+    - debug:
+        var: prime
