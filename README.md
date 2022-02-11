@@ -1,4 +1,4 @@
-# Ansible Collection - `strudelline.golang_example`
+# Ansible Collection - `jamesandariese.golang_example`
 
 This collection is an example of how to create a golang module
 for ansible.  Use it as a skeleton or to generate primes if you
@@ -13,7 +13,7 @@ To create your own prime seive module, you may update this module entirely with 
 ### Search and replace keywords
 The keywords to change are as follows:
 
-* `strudelline` - your namespace
+* `jamesandariese` - your namespace
 * `golang_example` - your collectionname
 * `generate_prime` - your module's name
 * `James Andariese` - your name

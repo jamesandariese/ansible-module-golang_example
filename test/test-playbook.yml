@@ -3,7 +3,7 @@
   gather_facts: yes
   become: no
   tasks:
-    - strudelline.golang_example.generate_prime:
+    - jamesandariese.golang_example.generate_prime:
         bits: 10
         _rebuild_golang_module: yes
       register: prime

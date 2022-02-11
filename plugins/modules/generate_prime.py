@@ -26,11 +26,11 @@ options:
 
 EXAMPLES = r'''
 - name: Generate a big ol' prime
-  strudelline.golang_example.generate_prime:
+  jamesandariese.golang_example.generate_prime:
     bits: 8192
 
 - name: Recompile and generate a tiny prime to test
-  strudelline.golang_example.generate_prime:
+  jamesandariese.golang_example.generate_prime:
     bits: 10
     _rebuild_golang_module: yes
 '''
